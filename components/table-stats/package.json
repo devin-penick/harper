@@ -1,0 +1,8 @@
+{
+  "name": "table-stats",
+  "version": "1.0.0",
+  "description": "Custom component to calculate table statistics",
+  "main": "index.js",
+  "author": "HarperDB Challenge",
+  "license": "MIT"
+} 

@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  harperdb:
+    image: harperdb/harperdb:latest
+    container_name: harperdb
+    ports:
+      - "9925:9925"  # HTTP API port
+      - "9926:9926"  # WebSocket port
+    environment:
+      - HDB_ADMIN_USERNAME=admin
+      - HDB_ADMIN_PASSWORD=${HDB_ADMIN_PASSWORD:-admin123}
+      - HDB_CLUSTERING=true
+      - HDB_CUSTOM_COMPONENTS=/opt/harperdb/components
+    volumes:
+      - harperdb_data:/opt/harperdb/data
+      - ../components/table-stats:/opt/harperdb/components/table-stats
+      - metrics_data:/opt/harperdb/metrics
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9925"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+
+volumes:
+  harperdb_data:
+  metrics_data: 
