@@ -32,7 +32,7 @@ jobs:
         python scripts/workflow.py
         
     - name: Upload metrics
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: workflow-metrics
         path: metrics/workflow_metrics.json
