@@ -25,7 +25,7 @@ jobs:
     - name: Start HarperDB container
       run: |
         docker compose -f docker/docker-compose.yml up -d
-        sleep 10  # Wait for container to start
+        sleep 20  # Wait for container to start
         
     - name: Run workflow
       run: |
