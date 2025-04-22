@@ -188,25 +188,6 @@ class HarperWorkflow:
             logger.error(f"Failed to validate changes: {e}")
             return False
 
-    def test_custom_component(self) -> bool:
-        """Test the custom table statistics component."""
-        try:
-            response = requests.get(
-                f"{self.base_url}/table-stats/test_schema/test_table",
-                headers=self.headers
-            )
-            response.raise_for_status()
-            stats = response.json()
-            
-            logger.info("Custom component test results:")
-            logger.info(f"Total records: {stats['stats']['total_records']}")
-            logger.info(f"Numeric fields: {list(stats['stats']['numeric_fields'].keys())}")
-            logger.info(f"String fields: {list(stats['stats']['string_fields'].keys())}")
-            
-            return True
-        except requests.exceptions.RequestException as e:
-            logger.error(f"Failed to test custom component: {e}")
-            return False
 
     def collect_metrics(self) -> Dict[str, Any]:
         """Collect container performance metrics."""
