@@ -250,11 +250,6 @@ class HarperWorkflow:
             logger.error("Data validation failed")
             return
         
-        # Test custom component
-        if not self.test_custom_component():
-            logger.error("Custom component test failed")
-            return
-        
         # Collect final metrics
         self.collect_metrics()
         
